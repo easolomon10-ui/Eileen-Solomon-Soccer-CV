@@ -256,6 +256,14 @@ img {
     font-weight: 600;
 }
 
+.profile-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
+}
+
 .about-text .lead {
     font-size: 1.2rem;
     margin-bottom: 30px;
