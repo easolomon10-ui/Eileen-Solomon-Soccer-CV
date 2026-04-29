@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const target = entry.target;
                 const finalValue = parseInt(target.textContent) || 0;
-                animateNumber(target, 0, finalValue, 1500);
+                animateNumber(target, 0, finalValue, 600);
                 observer.unobserve(target);
             }
         });

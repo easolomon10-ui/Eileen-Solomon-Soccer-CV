@@ -170,9 +170,10 @@ img {
 
 .hero-image img {
     width: 400px;
-    height: 400px;
-    border-radius: 50%;
+    height: 500px;
+    border-radius: 12px;
     object-fit: cover;
+    object-position: center top;
     border: 8px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
@@ -457,6 +458,13 @@ img {
 .full-video-link {
     text-align: center;
     margin-top: 20px;
+}
+
+.pro-film-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-width: 700px;
 }
 
 /* Achievements Section */
@@ -797,8 +805,8 @@ img {
     }
 
     .hero-image img {
-        width: 300px;
-        height: 300px;
+        width: 260px;
+        height: 340px;
     }
 
     .hero h1 {
@@ -860,8 +868,8 @@ img {
     }
 
     .hero-image img {
-        width: 250px;
-        height: 250px;
+        width: 220px;
+        height: 290px;
     }
 
     .hero-position {
