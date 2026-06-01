@@ -265,10 +265,10 @@ img {
 }
 
 .about-content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
     align-items: center;
-    gap: 40px;
 }
 
 .about-image {
