@@ -265,15 +265,15 @@ img {
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 60px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
 }
 
 .about-image {
-    position: sticky;
-    top: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 .image-placeholder {
@@ -462,9 +462,8 @@ img {
 
 .pro-film-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    max-width: 700px;
 }
 
 /* Achievements Section */
