@@ -43,7 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 const navHeight = navbar.offsetHeight;
-                const targetPosition = target.offsetTop - navHeight;
+                // Land on the section's heading rather than the section box, so the
+                // section's top padding doesn't leave a dead gap under the navbar.
+                const heading = target.querySelector('.section-title, h1, h2');
+                const GAP_BELOW_NAV = 24;
+                const anchorEl = heading || target;
+                const anchorTop = anchorEl.getBoundingClientRect().top + window.scrollY;
+                const targetPosition = Math.max(0, anchorTop - navHeight - GAP_BELOW_NAV);
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'

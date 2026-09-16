@@ -4,9 +4,9 @@
     --primary-dark: #0a1330;
     --secondary-color: #2c5aa0;
     --accent-color: #5b8fd6;
-    --gold: #c9a227;
-    --gold-light: #e0bd52;
-    --gold-deep: #8a6a12;
+    --accent-mid: #4a86d8;
+    --accent-bright: #8fc0f5;
+    --accent-deep: #1b3f7a;
     --text-color: #10161f;
     --text-light: #5c6573;
     --background: #ffffff;
@@ -26,6 +26,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 94px;
 }
 
 body {
@@ -36,7 +37,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     line-height: 1.2;
 }
@@ -49,7 +50,7 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--accent-mid);
     outline-offset: 3px;
 }
 
@@ -89,10 +90,10 @@ img {
 }
 
 .nav-logo {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
     color: var(--primary-color);
 }
 
@@ -116,7 +117,7 @@ img {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gold);
+    background: var(--accent-mid);
     transition: var(--transition);
 }
 
@@ -168,7 +169,7 @@ img {
     right: 0;
     bottom: 0;
     background:
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900"><circle cx="450" cy="450" r="280" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/><circle cx="450" cy="450" r="5" fill="rgba(201,162,39,0.35)"/><line x1="450" y1="0" x2="450" y2="900" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/></svg>') no-repeat;
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900"><circle cx="450" cy="450" r="280" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/><circle cx="450" cy="450" r="5" fill="rgba(143,192,245,0.55)"/><line x1="450" y1="0" x2="450" y2="900" stroke="rgba(255,255,255,0.035)" stroke-width="1.5"/></svg>') no-repeat;
     background-position: right -220px center;
     background-size: 900px 900px;
     pointer-events: none;
@@ -203,12 +204,12 @@ img {
 }
 
 .hero h1 {
-    font-size: 5rem;
+    font-size: clamp(2.5rem, 6.2vw, 4.75rem);
     margin-bottom: 20px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1;
+    letter-spacing: -2px;
+    line-height: 1.02;
 }
 
 .hero-subtitle {
@@ -219,6 +220,7 @@ img {
 }
 
 .hero-position {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.8rem;
     margin-bottom: 35px;
     font-weight: 700;
@@ -227,6 +229,25 @@ img {
 
 .hero-position span {
     color: var(--accent-color);
+    font-weight: 700;
+}
+
+.hero-current {
+    font-family: 'Space Grotesk', sans-serif;
+    display: inline-block;
+    margin-bottom: 28px;
+    padding: 8px 18px;
+    border: 1px solid rgba(143, 192, 245, 0.45);
+    border-radius: 999px;
+    background: rgba(143, 192, 245, 0.12);
+    color: #dbe9fb;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.hero-current strong {
+    color: var(--accent-bright);
     font-weight: 700;
 }
 
@@ -245,15 +266,15 @@ img {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    color: var(--primary-dark);
-    box-shadow: 0 4px 14px rgba(201, 162, 39, 0.35);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(44, 90, 160, 0.35);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--gold), #a3801d);
+    background: linear-gradient(135deg, var(--accent-mid), var(--primary-color));
     transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(201, 162, 39, 0.45);
+    box-shadow: 0 10px 24px rgba(44, 90, 160, 0.45);
 }
 
 /* Sections */
@@ -263,6 +284,7 @@ img {
 
 .section-title {
     font-size: 2.5rem;
+    letter-spacing: -1px;
     text-align: center;
     margin-bottom: 60px;
     color: var(--primary-color);
@@ -274,7 +296,7 @@ img {
     display: block;
     width: 64px;
     height: 3px;
-    background: linear-gradient(90deg, var(--secondary-color), var(--gold));
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-mid));
     margin: 18px auto 0;
     border-radius: 2px;
 }
@@ -376,11 +398,12 @@ img {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 2.75rem;
     font-weight: 600;
-    color: var(--gold-deep);
+    color: var(--accent-deep);
     margin-bottom: 10px;
 }
 
 .stat-label {
+    font-family: 'Space Grotesk', sans-serif;
     color: var(--text-light);
     font-weight: 600;
     text-transform: uppercase;
@@ -581,6 +604,10 @@ img {
     order: 2;
 }
 
+.fcps-photo {
+    object-position: center center;
+}
+
 .career-item:hover {
     box-shadow: var(--shadow-lg);
     transform: translateX(5px);
@@ -606,6 +633,7 @@ img {
 }
 
 .career-role {
+    font-family: 'Space Grotesk', sans-serif;
     color: var(--text-light);
     font-weight: 600;
     font-size: 1rem;
@@ -616,7 +644,7 @@ img {
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(201, 162, 39, 0.4);
+    border: 1px solid rgba(74, 134, 216, 0.4);
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
     font-size: 0.85rem;
@@ -637,12 +665,13 @@ img {
 }
 
 .career-highlights li strong {
-    color: var(--gold-deep);
+    color: var(--accent-deep);
     font-weight: 700;
 }
 
 /* Stats Section Enhancements */
 .stats-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
     text-align: center;
     font-size: 1.1rem;
     color: var(--text-light);
@@ -759,7 +788,7 @@ img {
     text-align: center;
     padding: 30px 20px;
     border-top: 3px solid;
-    border-image: linear-gradient(90deg, var(--secondary-color), var(--gold)) 1;
+    border-image: linear-gradient(90deg, var(--secondary-color), var(--accent-mid)) 1;
 }
 
 .footer p {
