@@ -194,7 +194,7 @@ img {
     height: 500px;
     border-radius: 12px;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     border: 8px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
@@ -232,10 +232,16 @@ img {
     font-weight: 700;
 }
 
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
 .hero-current {
     font-family: 'Space Grotesk', sans-serif;
     display: inline-block;
-    margin-bottom: 28px;
     padding: 8px 18px;
     border: 1px solid rgba(143, 192, 245, 0.45);
     border-radius: 999px;
@@ -247,6 +253,24 @@ img {
 }
 
 .hero-current strong {
+    color: var(--accent-bright);
+    font-weight: 700;
+}
+
+.hero-available {
+    font-family: 'Space Grotesk', sans-serif;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid var(--accent-bright);
+    border-radius: 999px;
+    background: rgba(143, 192, 245, 0.22);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.hero-available strong {
     color: var(--accent-bright);
     font-weight: 700;
 }
@@ -382,7 +406,7 @@ img {
 
 .stat-card {
     background: var(--background);
-    padding: 40px 20px;
+    padding: 30px 18px;
     text-align: center;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -454,13 +478,6 @@ img {
     background: var(--background);
 }
 
-.highlights-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
 .highlight-card {
     background: var(--background-alt);
     border-radius: 10px;
@@ -492,21 +509,29 @@ img {
 }
 
 .highlight-card h4 {
-    padding: 15px 15px;
+    padding: 12px 14px 0;
     color: var(--primary-color);
-    text-align: center;
-    font-size: 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.3;
 }
 
-.full-video-link {
-    text-align: center;
-    margin-top: 20px;
+.film-meta {
+    padding: 3px 14px 13px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-light);
 }
 
 .pro-film-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1080px;
+    margin: 0 auto;
 }
 
 /* Achievements Section */
@@ -673,17 +698,26 @@ img {
 .stats-subtitle {
     font-family: 'Space Grotesk', sans-serif;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
     color: var(--text-light);
-    margin-top: -40px;
-    margin-bottom: 40px;
-    font-style: italic;
+    max-width: 640px;
+    margin: -40px auto 40px;
 }
 
 .stat-detail {
     font-size: 0.75rem;
     color: var(--text-light);
     margin-top: 5px;
+}
+
+.stat-note {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.7rem;
+    line-height: 1.4;
+    color: var(--text-light);
 }
 
 .stats-note {
@@ -781,6 +815,18 @@ img {
     background: var(--primary-dark);
 }
 
+/* CV download */
+.cv-download {
+    text-align: center;
+    margin-top: 45px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+}
+
+.film-link {
+    display: none;
+}
+
 /* Footer */
 .footer {
     background: var(--primary-dark);
@@ -812,8 +858,8 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .highlights-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .pro-film-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .achievements-grid {
@@ -876,6 +922,10 @@ img {
         text-align: center;
     }
 
+    .hero-tags {
+        justify-content: center;
+    }
+
     .hero-image img {
         width: 260px;
         height: 340px;
@@ -923,8 +973,8 @@ img {
         gap: 15px;
     }
 
-    .highlights-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .pro-film-grid {
+        grid-template-columns: 1fr;
     }
 
     .achievements-grid {
@@ -957,5 +1007,311 @@ img {
     * {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==========================================================================
+   Print / Save as PDF
+   Renders the live DOM, so the PDF never drifts from the page.
+   Screen chrome is dropped, dark panels are flattened to ink-light type, and
+   video embeds are replaced by their URLs since iframes do not print.
+   ========================================================================== */
+@media print {
+    @page { margin: 14mm 14mm 16mm; }
+
+    .navbar,
+    .nav-toggle,
+    .cv-download,
+    .video-container,
+    .career-photo,
+    .about-image,
+    .contact-icon,
+    .hero .btn { display: none !important; }
+
+    html { scroll-padding-top: 0; }
+
+    body {
+        background: #fff;
+        color: #000;
+        font-size: 10pt;
+        line-height: 1.45;
+    }
+
+    a { color: #000; text-decoration: none; }
+
+    /* hero becomes a letterhead */
+    .hero {
+        height: auto;
+        min-height: 0;
+        background: none !important;
+        color: #000;
+        padding: 0 0 8mm;
+        display: block;
+        overflow: visible;
+    }
+
+    .hero::before { display: none; }
+
+    .hero-content {
+        display: flex;
+        flex-direction: row;
+        gap: 8mm;
+        align-items: flex-start;
+        max-width: none;
+    }
+
+    .hero-image img {
+        width: 38mm;
+        height: 48mm;
+        border: none;
+        box-shadow: none;
+        border-radius: 2mm;
+    }
+
+    .hero-text { text-align: left; }
+
+    .hero h1 {
+        font-size: 26pt;
+        line-height: 1.05;
+        letter-spacing: -0.5pt;
+        text-shadow: none;
+        margin-bottom: 2mm;
+    }
+
+    .hero-position {
+        font-size: 12pt;
+        margin-bottom: 3mm;
+    }
+
+    .hero-position span { color: #000; }
+
+    .hero-tags {
+        gap: 3mm;
+        margin-bottom: 0;
+        justify-content: flex-start;
+    }
+
+    .hero-current,
+    .hero-available {
+        background: none;
+        border: 0.5pt solid #000;
+        color: #000;
+        padding: 1.2mm 3mm;
+        font-size: 8.5pt;
+    }
+
+    .hero-current strong,
+    .hero-available strong { color: #000; }
+
+    .section { padding: 5mm 0 0; }
+    .container { max-width: none; padding: 0; }
+
+    .section-title {
+        font-size: 15pt;
+        text-align: left;
+        color: #000;
+        margin-bottom: 4mm;
+        letter-spacing: -0.3pt;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .career-category-title {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .section-title::after {
+        margin: 2mm 0 0;
+        background: #000;
+        width: 18mm;
+        height: 1pt;
+    }
+
+    /* never split an entry across pages */
+    .career-item,
+    .stat-card,
+    .highlight-card,
+    .contact-item,
+    .career-category { break-inside: avoid; page-break-inside: avoid; }
+
+    .about-content { display: block; }
+
+    .about-details {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2mm 4mm;
+    }
+
+    .detail-item {
+        background: none;
+        border-left: 1.5pt solid #000;
+        border-radius: 0;
+        padding: 1mm 0 1mm 2.5mm;
+    }
+
+    .detail-item strong { color: #000; }
+
+    .pro-film-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3mm;
+        max-width: none;
+    }
+
+    .highlight-card {
+        background: none;
+        box-shadow: none;
+        border: 0.5pt solid #999;
+        border-radius: 1mm;
+        padding: 2mm 2.5mm;
+        transform: none !important;
+    }
+
+    .highlight-card h4 {
+        padding: 0;
+        font-size: 9.5pt;
+        color: #000;
+    }
+
+    .film-meta {
+        padding: 0.5mm 0 0.8mm;
+        color: #444;
+        font-size: 7.5pt;
+    }
+
+    .film-link {
+        display: block;
+        font-size: 8.5pt;
+        color: #000;
+    }
+
+    .career-category { margin-bottom: 5mm; }
+
+    .career-category-title {
+        font-size: 11.5pt;
+        color: #000;
+        border-bottom: 0.5pt solid #000;
+        padding-bottom: 1mm;
+        margin-bottom: 3mm;
+    }
+
+    .career-item {
+        display: block;
+        background: none;
+        box-shadow: none;
+        border-left: 2pt solid #000;
+        border-radius: 0;
+        padding: 1mm 0 1mm 4mm;
+        margin-bottom: 4mm;
+        transform: none !important;
+    }
+
+    .career-header {
+        margin-bottom: 2mm;
+        gap: 3mm;
+    }
+
+    .career-header h4 {
+        font-size: 11pt;
+        color: #000;
+        margin-bottom: 0.5mm;
+    }
+
+    .career-role { color: #333; }
+
+    .career-year {
+        background: none !important;
+        border: 0.5pt solid #000;
+        color: #000;
+        padding: 0.4mm 2mm;
+        font-size: 8pt;
+    }
+
+    .career-highlights li {
+        padding: 0.5mm 0;
+        margin-left: 0;
+        line-height: 1.35;
+    }
+
+    .career-highlights li strong { color: #000; }
+
+    .stats-subtitle {
+        margin: -2mm 0 3mm;
+        text-align: left;
+        color: #333;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2mm;
+        max-width: none;
+    }
+
+    .stat-card {
+        background: none;
+        box-shadow: none;
+        border: 0.5pt solid #999;
+        border-radius: 1mm;
+        padding: 2.5mm 1mm;
+        transform: none !important;
+    }
+
+    .stat-number {
+        color: #000;
+        font-size: 15pt;
+        margin-bottom: 1mm;
+    }
+
+    .stat-label { color: #000; font-size: 7.5pt; }
+    .stat-detail { color: #444; font-size: 7pt; }
+
+    .stat-note {
+        color: #444;
+        font-size: 6.5pt;
+        margin-top: 1.5mm;
+        padding-top: 1.5mm;
+        border-top: 0.25pt solid #bbb;
+    }
+
+    .contact-content { max-width: none; }
+
+    .contact-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8mm;
+    }
+
+    .contact-item {
+        background: none;
+        border-radius: 0;
+        padding: 0;
+        gap: 0;
+    }
+
+    .contact-item strong { color: #000; }
+    .contact-item p { color: #000; }
+
+    .footer {
+        background: none !important;
+        color: #000;
+        border: none;
+        padding: 5mm 0 0;
+    }
+
+    .footer::after {
+        content: "easolomon10-ui.github.io/Eileen-Solomon-Soccer-CV";
+        display: block;
+        font-size: 8pt;
+        color: #444;
+        margin-top: 1mm;
+    }
+
+    .footer p { opacity: 1; font-size: 8pt; }
+
+    * {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }

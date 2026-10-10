@@ -58,6 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Download CV: print the live page through a print stylesheet, so the PDF is
+    // generated from whatever is on the page right now rather than a stale export.
+    const downloadBtn = document.getElementById('download-cv');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function() {
+            window.print();
+        });
+    }
+
     // Animate stats on scroll
     const statNumbers = document.querySelectorAll('.stat-number');
     const observerOptions = {
@@ -67,10 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const animateStats = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = entry.target;
-                const finalValue = parseInt(target.textContent) || 0;
-                animateNumber(target, 0, finalValue, 600);
-                observer.unobserve(target);
+                animateNumber(entry.target, 600);
+                observer.unobserve(entry.target);
             }
         });
     };
@@ -78,19 +85,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(animateStats, observerOptions);
     statNumbers.forEach(stat => observer.observe(stat));
 
-    function animateNumber(element, start, end, duration) {
-        if (end === 0) return;
-        const range = end - start;
-        const increment = range / (duration / 16);
-        let current = start;
+    function animateNumber(element, duration) {
+        const raw = element.textContent.trim();
+        const parts = raw.match(/^(\D*?)(\d+(?:\.\d+)?)(.*)$/);
+        if (!parts) return;
+
+        const prefix = parts[1];
+        const end = parseFloat(parts[2]);
+        const suffix = parts[3];
+        const decimals = (parts[2].split('.')[1] || '').length;
+        if (!end) return;
+
+        const steps = Math.max(1, Math.round(duration / 16));
+        const increment = end / steps;
+        let current = 0;
+
+        const render = value => {
+            element.textContent = prefix + value.toFixed(decimals) + suffix;
+        };
 
         const timer = setInterval(() => {
             current += increment;
             if (current >= end) {
-                element.textContent = end;
+                element.textContent = raw;
                 clearInterval(timer);
             } else {
-                element.textContent = Math.floor(current);
+                render(current);
             }
         }, 16);
     }
